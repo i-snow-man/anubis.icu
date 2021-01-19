@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Under Construction</title>
+	<meta charset="UTF-8">
+	<link rel="icon" src="favicon.ico">
+	<script type="text/javascript">
+		window.onload = matrixjs;
+		function matrixjs(){
+			var c = document.getElementById("argo");
+			c.height = window.innerHeight;  
+			c.width = window.innerWidth;   
+			var argoRa=13; 
+			var column=c.width/argoRa; 
+			var argos=[];
+			for(var i=0; i<column;i++){
+				argos[i]=1;
+			}
+			context= c.getContext('2d');
+			function dibujar(){
+				context.fillStyle="rgba(0,0,0,0.09)";
+				context.fillRect(0,0,c.width,c.height);
+				context.fillStyle= "#26b428";
+				context.font= argoRa+"px arial"; 
+				for(var i=0;i<argos.length;i++){
+					text=elegirTexts();
+					Texts=text.split("");
+					context.fillText(Texts,i*argoRa, argos[i]*argoRa);
+					if(argos[i]*argoRa > c.height && Math.random()>0.963){
+						argos[i]=0;
+					}
+					argos[i]++;
+				}
+			}	
+				function elegirTexts(){
+				var numTexts=Math.floor((Math.random()*94)+33);
+						return String.fromCharCode(parseInt(numTexts));
+					}
+			setInterval(dibujar,29);
+		}	
+	</script>
+	<style type="text/css"> * {margin: 0; padding: 0;} canvas {display: block;} body {background: black;} </style>
+</head>
+<body>
+<canvas id="argo"></canvas>
+</body>
+</html>
